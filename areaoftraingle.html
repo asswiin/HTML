@@ -1,0 +1,39 @@
+<html>
+<body>
+<head>
+<title>area of traingle</title>
+
+<style>
+.box{
+width:200px; height:190px; border:2px solid #000000; margin:15px; padding:20px;
+}
+</style>
+
+<body>
+<center>
+<div class="box"><br>
+<h2>Area of Traingle</h2>
+<form>
+<label>Base</label><br>
+<input type="number" id="base" value=""<br><br><br>
+<label>Height</label><br>
+<input type="number" id="height" value="" <br><br><br>
+<input type="button" onClick="calculateArea()" value="calculate">
+</form>
+<p id="result"></p>
+
+<script>
+function calculateArea(){
+let base=parseFloat(document.getElementById("base").value);
+let height=parseFloat(document.getElementById("height").value);
+let area=0.5 * base * height;
+document.getElementById("result").innerHTML="Area of Taingle: " + area;
+}
+</script>
+</center>
+</div>
+</body>
+</html>
+
+
+
