@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Square Root Calculator</title>
+
+<style>
+.box{
+width:200px; height:250px; border:2px solid #000000; margin:20px; padding:20px;
+}
+</style>
+
+</head>
+
+<body>
+<center>
+<div class="box"><br>
+<h2>Square Root Calculator</h2>
+<label for="number">Enter a number:</label>
+<input type="number" id="root" placeholder="Enter number"><br><br>
+
+<button onclick="SquareRoot()">Find Square Root</button>
+<p id="result"></p>
+  
+<script>
+function SquareRoot() {
+let number = document.getElementById("root").value;
+if (number < 0) {
+document.getElementById("result").innerText = "Please enter a non-negative number.";
+return;
+}
+let squareRoot= Math.sqrt(number);document.getElementById("result").innerText = `The square root of ${number} is: ${squareRoot}`;
+    }
+</script>
+</center>
+</div>
+</body>
+</html>
+
+
