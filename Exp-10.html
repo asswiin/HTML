@@ -1,0 +1,176 @@
+
+<html>
+<head>
+    <title>VALIDATION FORM</title>
+    <style>
+        body {
+            background-color: whitesmoke; 
+            display: flex; 
+            justify-content: center; align-items: center; 
+            height: 850px; margin: 0;
+        }
+
+        .container {
+            background: white; border: 1px solid green; 
+            padding: 25px;border-radius: 15px; 
+            width: 600px;max-width: 100%; 
+        }
+    
+        h2 {
+            text-align: center; color: darkslategray; 
+            margin-bottom: 20px; font-size: 22px;
+        }
+    
+        .formg {
+            margin-bottom: 15px;
+        }
+    
+        label {
+            font-size: 13px; display: block; margin-bottom: 7px;
+        }
+    
+        input, textarea {
+            width: 95%; border: 2px solid lightgray; background: whitesmoke;
+            padding: 7px; border-radius: 7px;margin-top: 6px; 
+        }
+    
+        input:focus, textarea:focus {
+            border-color: green; outline: none;
+        }
+    
+        button {
+            width: 45%; 
+            background: green; color: white; 
+            padding: 11px; border: none;  border-radius: 8px; cursor: pointer;
+        }
+    
+        button:hover {
+            background: darkgreen;
+        }
+
+        .gender-options {
+            display: flex;
+            align-items: center;  margin-top: 18px; justify-content: center;
+        }
+
+        .gender-options label {
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>REGISTRATION FORM</h2>
+        <form id="registration-form" onsubmit="validateForm(event)">
+            <div class="formg">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name">
+            </div>
+            
+            <div class="formg">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" >
+            </div>
+            
+            <div class="formg">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter your phone number" >
+            </div>
+            
+            <div class="formg">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" placeholder="Enter your address" rows="4" ></textarea>
+            </div>
+            
+            <div class="formg">
+                <label>Gender:</label>
+                <div class="gender-options">
+                    <label for="male">Male</label> <input type="radio" id="male" name="gender" value="Male" >
+                    <label for="female">Female</label><input type="radio" id="female" name="gender" value="Female" >
+                    <label for="other">Other</label><input type="radio" id="other" name="gender" value="Other" >
+                </div>
+            </div>
+            
+            <div class="formg">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" >
+            </div>
+            
+            
+            
+            <div class="formg">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" >
+            </div>
+            
+            <div class="formg">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" >
+            </div>
+            <center><button type="submit">REGISTER</button></center>
+        </form>
+    </div>
+
+    <script>
+        function validateForm(e) {
+            e.preventDefault();
+
+            var fullName = document.getElementById('full-name').value;
+            var dob = new Date(document.getElementById('dob').value);
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var phone = document.getElementById('phone').value;
+            var email = document.getElementById('email').value;
+            var address = document.getElementById('address').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+
+            if (fullName === '') {
+                alert('Please enter your full name');
+                return false;
+            }
+
+            if (!gender) {
+                alert("Please select a gender");
+                return false;
+            }
+
+            var emailR = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailR.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+
+            if (password === '') {
+                alert('Please enter a password');
+                return false;
+            }
+
+            if (confirmPassword !== password) {
+                alert('Passwords do not match');
+                return false;
+            }
+
+            var phoneR = /^\d{10}$/;
+            if (!phoneR.test(phone)) {
+                alert('Please enter a valid phone number');
+                return false;
+            }
+
+            var today = new Date();
+            var age = today.getFullYear() - dob.getFullYear();
+            var m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            if (age < 18) {
+                alert('You must be at least 18 years old to register');
+                return false;
+            }
+
+            alert('Registration successful!');
+            document.getElementById('registration-form').submit();
+        }
+    </script>
+</body>
+</html>
