@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Mouse Hover Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color:#ffffe0;
+        }
+        
+        .content {
+            border: 2px solid #333;
+            padding: 50px;
+            background-color: #FF7F50;
+            width: 300px;
+            margin: 50px auto;
+            cursor: pointer;
+        }
+
+        .image-container {
+            display: none;
+        }
+
+        .text-container {
+            display: none;  
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content" id="hoverContent">
+        <h2>welcome</h2>
+        <p>point mouse here</p>
+
+        
+        <div class="image-container" id="newImageContainer">
+            <img src="/home/ksb/Pictures/kmct.jpg" width="300" height="200" alt="New Image" id="newImage">
+        </div>
+        <div class="text-container" id="newTextContainer">
+            <h3>KMCT</h3>
+            <p>KMCT COLLEGE OF ENGINEERING</p>
+        </div>
+    </div>
+
+    <script>
+        const hoverContent = document.getElementById("hoverContent");
+        const newImageContainer = document.getElementById("newImageContainer");
+        const newTextContainer = document.getElementById("newTextContainer");
+        hoverContent.addEventListener("mouseenter", function() {
+            
+            newImageContainer.style.display = "block";
+            newTextContainer.style.display = "block";
+        });
+
+      
+        hoverContent.addEventListener("mouseleave", function() {
+            
+            newImageContainer.style.display = "none";
+            newTextContainer.style.display = "none";
+        });
+    </script>
+
+</body>
+</html>
+
